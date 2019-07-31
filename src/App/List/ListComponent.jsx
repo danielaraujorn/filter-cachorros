@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { data } from './data'
-import { filterDog } from './filterDog'
+import { testFilter } from './testFilter'
 import { ListItem } from './ListItem'
 import { Container, Grid, TablePagination } from '@material-ui/core'
+import { propTypes } from './propTypes'
 
 export const ListComponent = ({ filter }) => {
-	const [rowsPerPage, setRowsPerPage] = useState(12)
+	const [rowsPerPage, setRowsPerPage] = useState(9)
 	const [page, setPage] = useState(0)
 	const handleChangeRowsPerPage = ({ target: { value } }) => {
 		setRowsPerPage(+value)
@@ -14,8 +15,7 @@ export const ListComponent = ({ filter }) => {
 	const handleChangePage = (event, newPage) => {
 		setPage(newPage)
 	}
-	const dogs = data.filter(filterDog(filter))
-	console.log(dogs)
+	const dogs = data.filter(testFilter(filter))
 	return (
 		<Container>
 			<Grid container spacing={2}>
@@ -27,9 +27,13 @@ export const ListComponent = ({ filter }) => {
 					})}
 			</Grid>
 			{dogs.length > rowsPerPage && (
-				<Grid item>
+				<Grid item xs={12}>
 					<TablePagination
-						rowsPerPageOptions={[5, 10, 25]}
+						labelDisplayedRows={({ from, to, count }) =>
+							`${from}-${to} de ${count}`
+						}
+						labelRowsPerPage={'Resultados por página'}
+						rowsPerPageOptions={[9, 18]}
 						component="div"
 						count={dogs.length}
 						rowsPerPage={rowsPerPage}
@@ -48,3 +52,4 @@ export const ListComponent = ({ filter }) => {
 		</Container>
 	)
 }
+ListComponent.propTypes = propTypes

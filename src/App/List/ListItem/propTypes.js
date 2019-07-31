@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
 export const propTypes = {
-	setFilter: PropTypes.func.isRequired,
+	dog: PropTypes.object.isRequired,
 	classes: PropTypes.object.isRequired
 }

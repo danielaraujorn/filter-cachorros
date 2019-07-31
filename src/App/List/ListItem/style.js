@@ -1,6 +1,11 @@
 export const style = theme => ({
-	paper: {
-		padding: theme.spacing(2),
-		backgroundColor: theme.palette.primary.main
-	}
+	padding: {
+		padding: theme.spacing(2)
+	},
+	header: {
+		display: 'flex',
+		justifyContent: 'space-between'
+	},
+	maleIcon: { color: '#0085ff' },
+	femaleIcon: { color: '#ff005a' }
 })

@@ -1,9 +1,15 @@
 export const style = theme => ({
 	header: {
 		marginBottom: theme.spacing(2),
-		backgroundImage: theme.palette.gradient('-15deg'),
-		paddingTop: theme.spacing(2),
-		paddingBottom: theme.spacing(2)
+		backgroundImage: theme.palette.gradientLight('-15deg')
 	},
-	paper: { padding: theme.spacing(2) }
+	pattern: { backgroundSize: '50%' },
+	headerPadding: { paddingTop: 24, paddingBottom: 16 },
+	headerTitle: {
+		marginBottom: 5,
+		color: theme.palette.primary.contrastText
+	},
+	inputFocused: {
+		borderColor: 'red'
+	}
 })
