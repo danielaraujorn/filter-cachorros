@@ -17,6 +17,9 @@ export const theme = createMuiTheme({
 			}
 		},
 		MuiFormLabel: { root: { color: '#000000CC' } },
+		MuiOutlinedInput: {
+			input: { backgroundColor: CLARO, borderRadius: BORDER_RADIUS }
+		},
 		MuiTextField: {
 			root: {
 				'& label.Mui-focused': {
@@ -24,6 +27,7 @@ export const theme = createMuiTheme({
 				},
 				'& .MuiOutlinedInput-root': {
 					'& fieldset': {
+						borderRadius: BORDER_RADIUS,
 						borderColor: '#000000CC'
 					},
 					'&.Mui-focused fieldset': {

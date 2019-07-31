@@ -3,7 +3,7 @@ import { Header } from './Header'
 import { List } from './List'
 
 export const AppComponent = () => {
-	const [filter, changeFilter] = useState({ name: '', race: '' })
+	const [filter, changeFilter] = useState({})
 	const setFilter = obj => changeFilter({ ...filter, ...obj })
 	return (
 		<>

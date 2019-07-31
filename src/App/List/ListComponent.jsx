@@ -5,38 +5,45 @@ import { ListItem } from './ListItem'
 import { Container, Grid, TablePagination } from '@material-ui/core'
 import { propTypes } from './propTypes'
 
-export const ListComponent = ({ filter }) => {
-	const [rowsPerPage, setRowsPerPage] = useState(9)
-	const [page, setPage] = useState(0)
-	const handleChangeRowsPerPage = ({ target: { value } }) => {
-		setRowsPerPage(+value)
-		setPage(0)
+const selectRowsPerPage = width => {
+	switch (width) {
+		case 'sm':
+			return 6
+		case 'xs':
+			return 5
+		default:
+			return 9
 	}
+}
+
+export const ListComponent = ({ filter, width }) => {
+	const [page, setPage] = useState(0)
 	const handleChangePage = (event, newPage) => {
 		setPage(newPage)
 	}
 	const dogs = data.filter(testFilter(filter))
+	const ROWS_PER_PAGE = selectRowsPerPage(width)
 	return (
 		<Container>
 			<Grid container spacing={2}>
 				{dogs
-					.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+					.slice(page * ROWS_PER_PAGE, page * ROWS_PER_PAGE + ROWS_PER_PAGE)
 					.map((dog, index) => {
 						const { id = index } = dog
 						return <ListItem key={id} dog={dog} />
 					})}
 			</Grid>
-			{dogs.length > rowsPerPage && (
+			{dogs.length > ROWS_PER_PAGE && (
 				<Grid item xs={12}>
 					<TablePagination
 						labelDisplayedRows={({ from, to, count }) =>
 							`${from}-${to} de ${count}`
 						}
-						labelRowsPerPage={'Resultados por página'}
-						rowsPerPageOptions={[9, 18]}
+						labelRowsPerPage={''}
+						rowsPerPageOptions={[]}
 						component="div"
 						count={dogs.length}
-						rowsPerPage={rowsPerPage}
+						rowsPerPage={ROWS_PER_PAGE}
 						page={page}
 						backIconButtonProps={{
 							'aria-label': 'previous page'
@@ -45,7 +52,6 @@ export const ListComponent = ({ filter }) => {
 							'aria-label': 'next page'
 						}}
 						onChangePage={handleChangePage}
-						onChangeRowsPerPage={handleChangeRowsPerPage}
 					/>
 				</Grid>
 			)}
