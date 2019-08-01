@@ -16,25 +16,20 @@ export const theme = createMuiTheme({
 				borderRadius: BORDER_RADIUS
 			}
 		},
-		MuiFormLabel: { root: { color: '#000000CC' } },
-		MuiOutlinedInput: {
-			input: { backgroundColor: CLARO, borderRadius: BORDER_RADIUS }
+		MuiFormControl: {
+			root: { backgroundColor: CLARO + '66', borderRadius: BORDER_RADIUS }
 		},
-		MuiTextField: {
+		MuiFormLabel: {
+			root: { color: '#000000CC', '&.Mui-focused': { color: '#000000CC' } }
+		},
+		MuiOutlinedInput: {
 			root: {
-				'& label.Mui-focused': {
-					color: '#000000CC'
-				},
-				'& .MuiOutlinedInput-root': {
-					'& fieldset': {
-						borderRadius: BORDER_RADIUS,
-						borderColor: '#000000CC'
-					},
-					'&.Mui-focused fieldset': {
-						borderColor: '#000000CC'
-					}
+				'&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+					borderRadius: BORDER_RADIUS,
+					borderColor: '#000000CC'
 				}
-			}
+			},
+			notchedOutline: { borderRadius: BORDER_RADIUS, borderColor: '#000000CC' }
 		}
 	},
 	palette: {

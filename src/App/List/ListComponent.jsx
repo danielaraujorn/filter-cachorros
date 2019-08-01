@@ -16,7 +16,7 @@ const selectRowsPerPage = width => {
 	}
 }
 
-export const ListComponent = ({ filter, width }) => {
+export const ListComponent = ({ filter, width, language }) => {
 	const [page, setPage] = useState(0)
 	const handleChangePage = (event, newPage) => {
 		setPage(newPage)
@@ -28,8 +28,8 @@ export const ListComponent = ({ filter, width }) => {
 			<Grid container spacing={2}>
 				{dogs
 					.slice(page * ROWS_PER_PAGE, page * ROWS_PER_PAGE + ROWS_PER_PAGE)
-					.map((dog, index) => {
-						const { id = index } = dog
+					.map(dog => {
+						const { id } = dog
 						return <ListItem key={id} dog={dog} />
 					})}
 			</Grid>
@@ -37,7 +37,7 @@ export const ListComponent = ({ filter, width }) => {
 				<Grid item xs={12}>
 					<TablePagination
 						labelDisplayedRows={({ from, to, count }) =>
-							`${from}-${to} de ${count}`
+							`${from}-${to} ${language.of} ${count}`
 						}
 						labelRowsPerPage={''}
 						rowsPerPageOptions={[]}
@@ -45,12 +45,6 @@ export const ListComponent = ({ filter, width }) => {
 						count={dogs.length}
 						rowsPerPage={ROWS_PER_PAGE}
 						page={page}
-						backIconButtonProps={{
-							'aria-label': 'previous page'
-						}}
-						nextIconButtonProps={{
-							'aria-label': 'next page'
-						}}
 						onChangePage={handleChangePage}
 					/>
 				</Grid>

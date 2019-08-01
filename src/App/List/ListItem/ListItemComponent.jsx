@@ -5,20 +5,24 @@ import {
 	Typography,
 	Divider,
 	Tooltip,
-	Avatar
+	Avatar,
+	IconButton
 } from '@material-ui/core'
 import PetIcon from '@material-ui/icons/Pets'
+import CastratedIcon from '@material-ui/icons/CheckCircleOutlineRounded'
+import NotCastratedIcon from '@material-ui/icons/AddCircleOutlineRounded'
 import classnames from 'classnames'
 import { propTypes } from './propTypes'
 import StringMask from 'string-mask'
 import { formatDate } from 'utils/formatDate'
+import { genderEnum } from 'utils/genderEnum'
 
 const phoneFormat = new StringMask('(00) 00000-0000')
 
-export const ListItemComponent = ({ dog, classes }) => {
+export const ListItemComponent = ({ dog, classes, language }) => {
 	const {
 		name = '',
-		gender = 'fêmea',
+		gender = genderEnum.female,
 		race = '',
 		picture,
 		dateOfBirth,
@@ -39,39 +43,54 @@ export const ListItemComponent = ({ dog, classes }) => {
 							<Typography variant="body2">{race}</Typography>
 						</div>
 					</div>
-					<div>
-						{gender === 'fêmea' ? (
-							<Tooltip placement="left" title="Fêmea">
-								<div>
-									<PetIcon className={classes.femaleIcon} />
-								</div>
-							</Tooltip>
-						) : (
-							<Tooltip placement="left" title="Macho">
-								<div>
-									<PetIcon className={classes.maleIcon} />
-								</div>
-							</Tooltip>
-						)}
+					<div className={classes.flex}>
+						<Tooltip
+							enterTouchDelay={10}
+							placement="left"
+							title={castrated ? language.castrated : language.notCastrated}
+						>
+							<IconButton size="small">
+								{castrated ? (
+									<CastratedIcon color="secondary" />
+								) : (
+									<NotCastratedIcon
+										color="disabled"
+										style={{ transform: 'rotateZ(45deg)' }}
+									/>
+								)}
+							</IconButton>
+						</Tooltip>
+						<Tooltip
+							enterTouchDelay={10}
+							placement="left"
+							title={
+								gender === genderEnum.female ? language.female : language.male
+							}
+						>
+							<IconButton disableTouchRipple size="small">
+								<PetIcon
+									className={
+										gender === genderEnum.female
+											? classes.femaleIcon
+											: classes.maleIcon
+									}
+								/>
+							</IconButton>
+						</Tooltip>
 					</div>
 				</div>
 				<Divider />
 				<div className={classes.padding}>
 					<Typography className={classes.infoTitle}>
-						<strong>Ultimo atendimento: </strong>
+						<strong>{language.dateOfLastService}: </strong>
 						{formatDate(new Date(dateOfLastService))}
 					</Typography>
 					<Typography className={classes.infoTitle}>
-						<strong>Data de nascimento: </strong>
+						<strong>{language.dateOfBirth}: </strong>
 						{formatDate(new Date(dateOfBirth))}
 					</Typography>
 					<Typography className={classes.infoTitle}>
-						<strong>Sexo: </strong>
-						{gender === 'fêmea' ? 'Fêmea' : 'Macho'}
-						{castrated && gender === 'fêmea' ? ', Castrada' : ', Castrado'}
-					</Typography>
-					<Typography className={classes.infoTitle}>
-						<strong>Dono: </strong>
+						<strong>{language.owner}: </strong>
 						{ownersName}, {phoneFormat.apply(ownersPhone)}
 					</Typography>
 				</div>

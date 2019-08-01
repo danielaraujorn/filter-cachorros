@@ -6,7 +6,7 @@ export const style = theme => ({
 	pattern: { backgroundSize: '50%' },
 	headerPadding: { paddingTop: 24, paddingBottom: 16 },
 	headerTitle: {
-		marginBottom: 5,
+		marginBottom: theme.spacing(2),
 		color: theme.palette.primary.contrastText
 	},
 	inputFocused: {

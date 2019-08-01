@@ -7,7 +7,7 @@ export const AppComponent = () => {
 	const setFilter = obj => changeFilter({ ...filter, ...obj })
 	return (
 		<>
-			<Header setFilter={setFilter} />
+			<Header filter={filter} setFilter={setFilter} />
 			<List filter={filter} />
 		</>
 	)

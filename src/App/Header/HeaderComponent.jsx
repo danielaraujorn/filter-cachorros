@@ -5,13 +5,16 @@ import {
 	Grid,
 	Typography,
 	Button,
-	Fade
+	Fade,
+	MenuItem
 } from '@material-ui/core'
 import { isWidthUp } from '@material-ui/core/withWidth'
 import { propTypes } from './propTypes'
 import classnames from 'classnames'
 import ossos from '../../ossos-pattern.png'
 import NumberFormat from 'react-number-format'
+import { OutlinedSelect } from 'Common/OutlinedSelect'
+import { genderEnum } from 'utils/genderEnum'
 
 const NumberFormatCustom = ({ inputRef, onChange, ...other }) => {
 	return (
@@ -30,8 +33,15 @@ const NumberFormatCustom = ({ inputRef, onChange, ...other }) => {
 	)
 }
 
-export const HeaderComponent = ({ classes, setFilter, width }) => {
+export const HeaderComponent = ({
+	classes,
+	setFilter,
+	width,
+	language,
+	filter
+}) => {
 	const [advancedFilter, setAdvancedFilter] = useState(false)
+	const { ownersPhone = '', name = '', race = '', gender = '' } = filter
 	return (
 		<div className={classes.header}>
 			<div
@@ -41,18 +51,19 @@ export const HeaderComponent = ({ classes, setFilter, width }) => {
 				<Container>
 					<Grid item xs={12}>
 						<Typography className={classes.headerTitle} variant="body2">
-							Procure pelo animal:
+							{language.searchForTheDog}:
 						</Typography>
 					</Grid>
 					<Grid spacing={2} container>
 						<Grid item xs={12} sm={6} md={4} lg={3}>
 							<TextField
-								margin="dense"
+								value={ownersPhone}
+								// margin="dense"
 								onChange={({ target: { value: ownersPhone } }) =>
 									setFilter({ ownersPhone })
 								}
 								fullWidth
-								label="Telefone do dono"
+								label={language.ownersPhone}
 								variant="outlined"
 								InputProps={{
 									inputComponent: NumberFormatCustom
@@ -62,10 +73,11 @@ export const HeaderComponent = ({ classes, setFilter, width }) => {
 
 						<Grid item xs={12} sm={6} md={4} lg={3}>
 							<TextField
-								margin="dense"
+								value={name}
+								// margin="dense"
 								onChange={({ target: { value: name } }) => setFilter({ name })}
 								fullWidth
-								label="Nome do animal"
+								label={language.dogsName}
 								variant="outlined"
 							/>
 						</Grid>
@@ -73,12 +85,13 @@ export const HeaderComponent = ({ classes, setFilter, width }) => {
 							<Fade in={true}>
 								<Grid item xs={12} sm={6} md={4} lg={3}>
 									<TextField
-										margin="dense"
+										value={race}
+										// margin="dense"
 										onChange={({ target: { value: race } }) =>
 											setFilter({ race })
 										}
 										fullWidth
-										label="Raça"
+										label={language.race}
 										variant="outlined"
 									/>
 								</Grid>
@@ -87,15 +100,21 @@ export const HeaderComponent = ({ classes, setFilter, width }) => {
 						{(advancedFilter || isWidthUp('lg', width)) && (
 							<Fade in={true}>
 								<Grid item xs={12} sm={6} md={4} lg={3}>
-									<TextField
-										margin="dense"
-										onChange={({ target: { value: race } }) =>
-											setFilter({ race })
-										}
+									<OutlinedSelect
+										value={gender}
+										label={language.gender}
 										fullWidth
-										label="Raça"
-										variant="outlined"
-									/>
+										// margin="dense"
+										onChange={({ target: { value: gender } }) =>
+											setFilter({ gender })
+										}
+									>
+										<MenuItem value="">{language.all}</MenuItem>
+										<MenuItem value={genderEnum.male}>{language.male}</MenuItem>
+										<MenuItem value={genderEnum.female}>
+											{language.female}
+										</MenuItem>
+									</OutlinedSelect>
 								</Grid>
 							</Fade>
 						)}
@@ -110,7 +129,7 @@ export const HeaderComponent = ({ classes, setFilter, width }) => {
 					color="secondary"
 					variant="contained"
 				>
-					{advancedFilter ? 'contrair filtros' : 'expandir filtros'}
+					{advancedFilter ? language.contractFilters : language.expandFilters}
 				</Button>
 			)}
 		</div>
