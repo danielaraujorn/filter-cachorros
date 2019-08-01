@@ -57,8 +57,8 @@ export const HeaderComponent = ({
 					<Grid spacing={2} container>
 						<Grid item xs={12} sm={6} md={4} lg={3}>
 							<TextField
+								autoFocus
 								value={ownersPhone}
-								// margin="dense"
 								onChange={({ target: { value: ownersPhone } }) =>
 									setFilter({ ownersPhone })
 								}
@@ -74,7 +74,6 @@ export const HeaderComponent = ({
 						<Grid item xs={12} sm={6} md={4} lg={3}>
 							<TextField
 								value={name}
-								// margin="dense"
 								onChange={({ target: { value: name } }) => setFilter({ name })}
 								fullWidth
 								label={language.dogsName}
@@ -86,7 +85,6 @@ export const HeaderComponent = ({
 								<Grid item xs={12} sm={6} md={4} lg={3}>
 									<TextField
 										value={race}
-										// margin="dense"
 										onChange={({ target: { value: race } }) =>
 											setFilter({ race })
 										}
@@ -104,7 +102,6 @@ export const HeaderComponent = ({
 										value={gender}
 										label={language.gender}
 										fullWidth
-										// margin="dense"
 										onChange={({ target: { value: gender } }) =>
 											setFilter({ gender })
 										}
