@@ -1,4 +1,4 @@
 export const genderEnum = {
 	male: 'macho',
-	female: 'female'
+	female: 'fêmea'
 }
