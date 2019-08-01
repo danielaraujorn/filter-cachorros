@@ -1,6 +1,6 @@
 export const ptBr = {
 	searchForTheDog: 'Procure pelo cachorro',
-	ownersPhone: 'Telefone do dono',
+	ownersPhone: 'Telefone do tutor',
 	dogsName: 'Nome do cachorro',
 	race: 'Raça',
 	contractFilters: 'Contrair filtros',
