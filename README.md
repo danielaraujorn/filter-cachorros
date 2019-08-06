@@ -1,5 +1,9 @@
 # filter-cachorros
 
+### Melhorias a serem adicionadas
+ 1. Resetar a página ao se aplicar um filtro
+ 2. Exibir qual a página que está sendo exibida
+
 ### Próximos trabalhos a serem adicionados
 
  1. Adicionar rota de detalhamento do cachorro selecionado
