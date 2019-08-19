@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { data } from './data'
 import { testFilter } from './testFilter'
 import { ListItem } from './ListItem'
@@ -18,10 +18,10 @@ const selectRowsPerPage = width => {
 
 export const ListComponent = ({ filter, width, language }) => {
 	const [page, setPage] = useState(0)
-	const handleChangePage = (event, newPage) => {
-		setPage(newPage)
-	}
 	const dogs = data.filter(testFilter(filter))
+	useEffect(() => {
+		setPage(0)
+	}, [dogs.length])
 	const ROWS_PER_PAGE = selectRowsPerPage(width)
 	return (
 		<Container>
@@ -45,7 +45,7 @@ export const ListComponent = ({ filter, width, language }) => {
 						count={dogs.length}
 						rowsPerPage={ROWS_PER_PAGE}
 						page={page}
-						onChangePage={handleChangePage}
+						onChangePage={(_, newPage) => setPage(newPage)}
 					/>
 				</Grid>
 			)}
