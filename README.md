@@ -1,4 +1,6 @@
 # filter-cachorros
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdanielaraujorn%2Ffilter-cachorros.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdanielaraujorn%2Ffilter-cachorros?ref=badge_shield)
+
 
 ### Melhorias a serem adicionadas
  1. Resetar a página ao se aplicar um filtro
@@ -13,3 +15,7 @@
  5. Adicionar rota de cadastramento de cachorros
  6. Adicionar quais serviços o cachorro já fez uso, e quando
  7. Adicionar mais filtros
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdanielaraujorn%2Ffilter-cachorros.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdanielaraujorn%2Ffilter-cachorros?ref=badge_large)
